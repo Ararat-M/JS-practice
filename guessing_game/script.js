@@ -14,6 +14,9 @@ document.querySelector("#modalBtnContinue").addEventListener("click", function (
 
 // Кнопка "Играть!" модального окна
 document.querySelector("#modalBtnPlay").addEventListener("click", function () {
+    gameRun = true;
+    document.querySelector("#questionNumber").innerText = questionNumber = 1;
+    
     maxValue = parseInt(document.querySelector("#maxValueInput").value);
     (maxValue > 999 || maxValue <= -999 || isNaN(maxValue)) ? maxValue = 999 : maxValue = maxValue
 
@@ -32,8 +35,6 @@ document.querySelector("#modalBtnPlay").addEventListener("click", function () {
             answerShow(meanNumber);
         }
     }
-    gameRun = true;
-    document.querySelector("#questionNumber").innerText = questionNumber = 1;
 })
 
 // Функция вывода ответа пользователю
