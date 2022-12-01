@@ -20,7 +20,7 @@
             Вопрос № <span id="questionNumber">1</span>
           </div>
           <div class="card-body pb-0" style="min-height:72px;">
-            <h5 class="card-title" id="answerField">Вы загадали число 1?</h5>
+            <h5 class="card-title" id="answerField">Угадайка!</h5>
           </div>
           <div class="card-body">
             <div class="btn-group">
@@ -45,7 +45,55 @@
             </div>
           </div>
           <div class="card-footer">
-            <button class="btn btn-link shadow-none" id="btnRetry">Заново</button>
+            <!-- Модальные окна начало -->
+            <div class="modal fade" id="modal" data-bs-backdrop="static" aria-hidden="true" aria-labelledby="modalLabel" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Укажите минимальное число от -999 до 999</h5>
+                  </div>
+                  <div class="modal-body">
+                    <div class="mb-3">
+                      <input type="number" class="form-control shadow-none" id="minValueInput">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#modal_2" data-bs-toggle="modal" data-bs-dismiss="modal" id="modalBtnContinue">Далее</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal fade" id="modal_2" data-bs-backdrop="static" aria-hidden="true" aria-labelledby="modalLabel_2" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel_2">Укажите максимальное число от -999 до 999</h5>
+                  </div>
+                  <div class="modal-body">
+                    <div class="mb-3">
+                      <input type="number" class="form-control shadow-none" id="maxValueInput">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-primary " data-bs-target="#modal_3" data-bs-toggle="modal" data-bs-dismiss="modal" id="modalBtnPlay">Играть!</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal fade" id="modal_3" aria-hidden="true" aria-labelledby="modalLabel_3" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel_3">Загадайте</h5>
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-dismiss="modal" id="btnPlay">Загадал</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Модальные окна конец -->
+            <a class="btn btn-primary shadow-none" data-bs-toggle="modal" href="#modal" role="button">Начать новую игру</a>
           </div>
         </div>
       </div>

@@ -1,30 +1,40 @@
-let gameRun = true;
+let gameRun = false;
 let questionNumber = 1;
+let minValue = null;
+let maxValue = null;
 let meanNumber = null;
 let answerField = document.querySelector("#answerField");
+let modalLabel_3 = document.querySelector("#modalLabel_3");
 
-let minValue = parseInt(prompt("Укажите минимальное число от -999 до 999"));
-(minValue < -999 || minValue >= 999 || isNaN(minValue)) ? minValue = -999 : minValue = minValue
+// Кнопка "Далее" модального окна
+document.querySelector("#modalBtnContinue").addEventListener("click", function () {
+    minValue = parseInt(document.querySelector("#minValueInput").value);
+    (minValue < -999 || minValue >= 999 || isNaN(minValue)) ? minValue = -999 : minValue = minValue
+})
 
-let maxValue = parseInt(prompt("Укажите максимальное число до 999 до 999"));
-(maxValue > 999 || maxValue <= -999 || isNaN(maxValue)) ? maxValue = 999 : maxValue = maxValue
+// Кнопка "Играть!" модального окна
+document.querySelector("#modalBtnPlay").addEventListener("click", function () {
+    maxValue = parseInt(document.querySelector("#maxValueInput").value);
+    (maxValue > 999 || maxValue <= -999 || isNaN(maxValue)) ? maxValue = 999 : maxValue = maxValue
 
-if (maxValue < minValue) {
-    alert("Ваше минимально число больше максимального");
-    answerField.innerText = `Нажмите кнопку "Заново" чтобы начать игру`;
-    gameRun = false;
-} else {
-    if (Math.abs(Math.abs(maxValue) - Math.abs(minValue)) == 1) {
-        alert("Диапазон чисел слишком маленький");
-        answerField.innerText = `Нажмите кнопку "Заново" чтобы начать игру`;
+    if (maxValue < minValue) {
+        modalLabel_3.innerText = "Ваше минимально число больше максимального";
+        answerField.innerText = `Угадайка!`;
         gameRun = false;
     } else {
-        alert(`Загадайте число от ${minValue} до ${maxValue}`);
-        meanNumber = Math.floor((maxValue - minValue)/2 + minValue);
-        console.log("meanNumber = " + meanNumber);
-        answerShow(meanNumber);
+        if ((maxValue - minValue) <= 1) {
+            modalLabel_3.innerText = "Диапазон чисел слишком маленький";
+            answerField.innerText = `Угадайка!`;
+            gameRun = false;
+        } else {
+            modalLabel_3.innerText = `Загадайте число от ${minValue} до ${maxValue}`;
+            meanNumber = Math.floor((maxValue - minValue)/2 + minValue);
+            answerShow(meanNumber);
+        }
     }
-}
+    gameRun = true;
+    document.querySelector("#questionNumber").innerText = questionNumber = 1;
+})
 
 // Функция вывода ответа пользователю
 function answerShow(answer) {
@@ -111,35 +121,6 @@ document.querySelector("#btnEquals").addEventListener("click", function () {
     }
 })
 
-// Кнопка "Заново"
-document.querySelector("#btnRetry").addEventListener("click", function () {
-    minValue = parseInt(prompt("Укажите минимальное число от -999 и до 999"));
-    (minValue < -999 || minValue >= 999 || isNaN(minValue)) ? minValue = -999 : minValue = minValue
-    
-    maxValue = parseInt(prompt("Укажите максимальное число от -999 и до 999"));
-    (maxValue > 999 || maxValue <= -999 || isNaN(maxValue)) ? maxValue = 999 : maxValue = maxValue
-
-    if (maxValue < minValue) {
-        alert("Ваше минимально число больше максимального");
-        answerField.innerText = `Нажмите кнопку "Заново" чтобы начать игру`;
-        gameRun = false;
-    } else {
-        if (Math.abs(Math.abs(maxValue) - Math.abs(minValue)) == 1) {
-            alert("Диапазон чисел слишком маленький");
-            answerField.innerText = `Нажмите кнопку "Заново" чтобы начать игру`;
-            gameRun = false;
-        } else {
-            alert(`Загадайте число от ${minValue} до ${maxValue}`);
-            meanNumber = Math.floor((maxValue - minValue)/2 + minValue);
-            console.log("meanNumber = " + meanNumber);
-            answerShow(meanNumber);
-        }
-    }
-
-    gameRun = true;
-    document.querySelector("#questionNumber").innerText = questionNumber = 1;
-})
-
 // Текстовое представление числа на русском языке
 function answerToText(number) {
     let negative = false;
@@ -147,7 +128,7 @@ function answerToText(number) {
         negative = true;
         number = Math.abs(number);
     } else if (number == 0) {
-        return "нуль"
+        return "ноль"
     }
 
     let numbersFirstRank = new Map();
