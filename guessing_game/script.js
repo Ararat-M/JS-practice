@@ -9,7 +9,7 @@ let modalLabel_3 = document.querySelector("#modalLabel_3");
 // Кнопка "Далее" модального окна
 document.querySelector("#modalBtnContinue").addEventListener("click", function () {
     minValue = parseInt(document.querySelector("#minValueInput").value);
-    (minValue < -999 || minValue >= 999 || isNaN(minValue)) ? minValue = -999 : minValue = minValue
+    (minValue < -999 || isNaN(minValue)) ? minValue = -999 : minValue = minValue
 })
 
 // Кнопка "Играть!" модального окна
@@ -18,7 +18,7 @@ document.querySelector("#modalBtnPlay").addEventListener("click", function () {
     document.querySelector("#questionNumber").innerText = questionNumber = 1;
     
     maxValue = parseInt(document.querySelector("#maxValueInput").value);
-    (maxValue > 999 || maxValue <= -999 || isNaN(maxValue)) ? maxValue = 999 : maxValue = maxValue
+    (maxValue > 999 || isNaN(maxValue)) ? maxValue = 999 : maxValue = maxValue
 
     if (maxValue < minValue) {
         modalLabel_3.innerText = "Ваше минимально число больше максимального";
@@ -91,7 +91,7 @@ document.querySelector("#btnLess").addEventListener("click", function () {
         maxValue = meanNumber;
         meanNumber = Math.floor((maxValue - minValue)/2 + minValue);
 
-        if (meanNumber == maxValue) {
+        if (meanNumber == minValue) {
             gameRun = false
             answerField.innerText = "Вы загадали неверное число"
         } else {
@@ -122,7 +122,50 @@ document.querySelector("#btnEquals").addEventListener("click", function () {
     }
 })
 
-// Текстовое представление числа на русском языке
+// Словари для функции answerToText(number)
+let numbersFirstRank = new Map();
+numbersFirstRank.set("1", "один").
+    set("2", "два").
+    set("3", "три").
+    set("4", "четыре").
+    set("5", "пять").
+    set("6", "шесть").
+    set("7", "семь").
+    set("8", "восемь").
+    set("9", "девять").
+    set("10", "десять").
+    set("11", "одиннадцать").
+    set("12", "двенадцать").
+    set("13", "тринадцать").
+    set("14", "четырнадцать").
+    set("15", "пятнадцать").
+    set("16", "шестнадцать").
+    set("17", "семнадцать").
+    set("18", "восемнадцать").
+    set("19", "девятнадцать");
+
+let numbersSecondRank = new Map();
+numbersSecondRank.set("2", "двадцать").
+    set("3", "тридцать").
+    set("4", "сорок").
+    set("5", "пятьдесят").
+    set("6", "шестьдесят").
+    set("7", "семьдесят").
+    set("8", "восемьдесят").
+    set("9", "девяносто");
+
+let numbersThirdRank = new Map();
+numbersThirdRank.set("1", "сто").
+    set("2", "двести").
+    set("3", "триста").
+    set("4", "четыреста").
+    set("5", "пятьсот").
+    set("6", "шестьсот").
+    set("7", "семьсот").
+    set("8", "восемьсот").
+    set("9", "девятьсот");
+
+// Текстовое представление числа на русском языке 
 function answerToText(number) {
     let negative = false;
     if (number < 0) {
@@ -131,48 +174,6 @@ function answerToText(number) {
     } else if (number == 0) {
         return "ноль"
     }
-
-    let numbersFirstRank = new Map();
-    numbersFirstRank.set("1", "один").
-        set("2", "два").
-        set("3", "три").
-        set("4", "четыре").
-        set("5", "пять").
-        set("6", "шесть").
-        set("7", "семь").
-        set("8", "восемь").
-        set("9", "девять").
-        set("10", "десять").
-        set("11", "одиннадцать").
-        set("12", "двенадцать").
-        set("13", "тринадцать").
-        set("14", "четырнадцать").
-        set("15", "пятнадцать").
-        set("16", "шестнадцать").
-        set("17", "семнадцать").
-        set("18", "восемнадцать").
-        set("19", "девятнадцать");
-
-    let numbersSecondRank = new Map();
-    numbersSecondRank.set("2", "двадцать").
-        set("3", "тридцать").
-        set("4", "сорок").
-        set("5", "пятьдесят").
-        set("6", "шестьдесят").
-        set("7", "семьдесят").
-        set("8", "восемьдесят").
-        set("9", "девяносто");
-
-    let numbersThirdRank = new Map();
-    numbersThirdRank.set("1", "сто").
-        set("2", "двести").
-        set("3", "триста").
-        set("4", "четыреста").
-        set("5", "пятьсот").
-        set("6", "шестьсот").
-        set("7", "семьсот").
-        set("8", "восемьсот").
-        set("9", "девятьсот");
     
     let rank = 0;
     if (number >= 100 && number <= 999) {
