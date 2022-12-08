@@ -69,6 +69,43 @@ const personGenerator = {
         }
     }`,
 
+    femaleProfessionJson: `{
+        "count": 10,
+        "list": {
+            "id_1": "Секретарь",
+            "id_2": "Повар",
+            "id_3": "Программист",
+            "id_4": "Менеджер",
+            "id_5": "Тренер",
+            "id_6": "Врач",
+            "id_7": "Водитель",
+            "id_8": "Продавец",
+            "id_9": "Садовод",
+            "id_10": "Режиссер"
+        }
+    }`,
+
+    maleProfessionJson: `{
+        "count": 15,
+        "list": {
+            "id_1": "Секретарь",
+            "id_2": "Повар",
+            "id_3": "Программист",
+            "id_4": "Менеджер",
+            "id_5": "Тренер",
+            "id_6": "Врач",
+            "id_7": "Водитель",
+            "id_8": "Продавец",
+            "id_9": "Садовод",
+            "id_10": "Режиссер",
+            "id_11": "Слесарь",
+            "id_12": "Шахтер",
+            "id_13": "Литейщик",
+            "id_14": "Строитель",
+            "id_15": "Сталевар"
+        }
+    }`,
+
     GENDER_MALE: "Мужчина",
     GENDER_FEMALE: "Женщина",
 
@@ -116,6 +153,14 @@ const personGenerator = {
         return birthday.toLocaleString("ru", options);
     },
 
+    randomProfession: function (gender) {
+        if (gender == this.GENDER_MALE) {
+            return this.randomValue(this.maleProfessionJson);
+        } else {
+            return this.randomValue(this.femaleProfessionJson);
+        }
+    },
+
     getPerson: function () {
         this.person = {};
 
@@ -135,8 +180,9 @@ const personGenerator = {
         
         this.person.middleName = this.randomMiddleName(this.person.gender)
 
-        this.person.birthday = this.randomBirthday();
+        this.person.profession = this.randomProfession(this.person.gender);
 
+        this.person.birthday = this.randomBirthday();
 
         return this.person;
     }

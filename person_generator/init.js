@@ -5,6 +5,7 @@ window.onload = function () {
     document.querySelector("#surname").innerText = person.surname;
     document.querySelector("#middleName").innerText = person.middleName;
     document.querySelector("#gender").innerText = person.gender;
+    document.querySelector("#profession").innerText = person.profession;
     document.querySelector("#birthday").innerText = person.birthday;
     if (person.gender == personGenerator.GENDER_MALE) {
         document.querySelector(".person-card-top").style.backgroundImage = "url(./img/male-icon.svg)"
