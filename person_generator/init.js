@@ -24,6 +24,7 @@ document.querySelector("#btnClear").addEventListener("click", function () {
     document.querySelector("#surname").innerText = "";
     document.querySelector("#middleName").innerText = "";
     document.querySelector("#gender").innerText = "";
+    document.querySelector("#profession").innerText = "";
     document.querySelector("#birthday").innerText = "";
     document.querySelector(".person-card-top").style.backgroundImage = "url()" 
 })
