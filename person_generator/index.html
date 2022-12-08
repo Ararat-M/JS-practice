@@ -4,14 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title>Генератор случайных пользователей</title>
 </head>
 <body>
-    <h1 id="surname">surname</h1>
-    <h1 id="firstName">firstName</h1>
-    <h1 id="middleName">middleName</h1>
-    <h1 id="gender">gender</h1>
-    <h1 id="birthday">birthday</h1>
+    <main>
+        <div class="container">
+            <div class="person-card-top">
+                <div class="person-card-info">
+                    <h1> Ф: <span id="surname">surname</span></h1>
+                    <h1> И: <span id="firstName">firstName</span></h1>
+                    <h1> О: <span id="middleName">middleName</span></h1>
+                    <h1> Пол: <span id="gender">gender</span></h1>
+                    <h1> Дата рождения: <span id="birthday">birthday</span></h1>
+                </div>
+            </div>
+            <div class="person-card-footer">
+                <button class="btn">
+                    Генерация новых данных
+                </button>
+                <button class="btn">
+                    Отчиска данных
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div>Icon made from <a href="http://www.onlinewebfonts.com/icon">Icon Fonts</a> is licensed by CC BY 3.0</div>
+    </footer>
 
     <script src="./personGenerator.js"></script>
     <script src="./init.js"></script>
