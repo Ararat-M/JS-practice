@@ -137,7 +137,7 @@ const personGenerator = {
     
     randomBirthday: function () {
         let minDate = new Date(1970,0,1)
-        let maxDate = new Date(2010,0,0)
+        let maxDate = new Date(2001,0,0)
 
         let totalDays = Math.floor((maxDate - minDate)/8.64e+7); // промежуток времени между maxDate и minDate в днях
         let randomDay = this.randomIntNumber(totalDays, 0);
