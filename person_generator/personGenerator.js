@@ -22,7 +22,7 @@ const personGenerator = {
     }`,
 
     maleFirstNameJson: `{
-        "count": 10,
+        "count": 16,
         "list": {
             "id_1": "Александр",
             "id_2": "Максим",
@@ -33,7 +33,13 @@ const personGenerator = {
             "id_7": "Михаил",
             "id_8": "Даниил",
             "id_9": "Егор",
-            "id_10": "Андрей"
+            "id_10": "Алексей",
+            "id_11": "Андрей",
+            "id_12": "Вадим",
+            "id_13": "Олег",
+            "id_14": "Сергей",
+            "id_15": "Илья",
+            "id_16": "Матвей"
         }
     }`,
 
@@ -50,22 +56,6 @@ const personGenerator = {
             "id_8": "Елизавета",
             "id_9": "Анна",
             "id_10": "Виктория"
-        }
-    }`,
-
-    middleNameJson: `{
-        "count": 10,
-        "list": {
-            "id_1": "Иванович",
-            "id_2": "Васильевич",
-            "id_3": "Петрович",
-            "id_4": "Михайлович",
-            "id_5": "Федорович",
-            "id_6": "Николаевич",
-            "id_7": "Семенович",
-            "id_8": "Степанович",
-            "id_9": "Павлович",
-            "id_10": "Александрович"
         }
     }`,
 
@@ -126,10 +116,37 @@ const personGenerator = {
     },
 
     randomMiddleName: function (gender) {
-        middleName = this.randomFirstName(this.middleNameJson)
+        let middleName = this.randomFirstName(this.maleFirstNameJson);
+        let lastSymbol = middleName[middleName.length - 1];
+        
+        if (middleName == "Михаил") {
+            middleName = "Михайл"
+        }
 
-        if (gender == this.GENDER_FEMALE) {
-            middleName = middleName.slice(0, -2) + "на";
+        if (gender == this.GENDER_MALE) {
+
+            if (lastSymbol == "й" || lastSymbol == "ь") {
+                middleName = middleName.slice(0, -1) + "евич";
+            }else if (lastSymbol == "а" || lastSymbol == "я") {
+                middleName = middleName.slice(0, -1) + "ич";
+            }else {
+                middleName += "ович";
+            }
+
+        }
+
+        if (gender == this.GENDER_FEMALE){
+
+            if (lastSymbol == "й" || lastSymbol == "ь") {
+                middleName = middleName.slice(0, -1) + "евна";
+            }else if (lastSymbol == "а") {
+                middleName = middleName.slice(0, -1) + "ична";
+            }else if (lastSymbol == "я") {
+                middleName = middleName.slice(0, -1) + "инична";
+            }else {
+                middleName += "овна";
+            }
+
         }
 
         return middleName;
